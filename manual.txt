@@ -1,0 +1,27 @@
+NAME
+    findpart - finds the number of all possible partitions of the number "n"
+    into "k" terms by sequential and parallel methods.
+
+SYNOPSIS
+    findpart
+    findpart [options] [<Value of "n"> <Value of "k">]
+
+DESCRIPTION
+    Finds the number of all possible partitions of the non negative number "n".
+    MPI technology is used for parallel computing.
+
+    The program operates in three modes: if the "n" and "k" arguments are not
+    specified, the manual is being printed.
+    If the both numbers are specified, then this problem is solved by the
+    methods specified using the "-s" and "-m" flags
+    (by default, only the "-m" flag is used).
+
+OPTIONS
+    -s
+        Use sequential computing
+    
+    -m
+        Use parallel computing
+    
+    -h or --help
+        Printing this manual
