@@ -4,39 +4,33 @@ RMDIR	= rm -rf
 COPY	= cp
 TAR		= tar -cf
 
-PROG	= nbodies
+PROG	= findpart
 MAN		= manual.txt
 
-CC      = gcc
+CC      = mpic++
 
 BIN     = ./bin
 OBJ     = ./obj
 INCLUDE = ./include
 SRC     = ./src
-EXAMP	= ./examples
 
-SRCS    = $(wildcard $(SRC)/*.c)
-OBJS    = $(patsubst $(SRC)/%.c,$(OBJ)/%.o,$(SRCS))
+SRCS    = $(wildcard $(SRC)/*.cpp)
+OBJS    = $(patsubst $(SRC)/%.cpp,$(OBJ)/%.o,$(SRCS))
 EXE     = $(BIN)/$(PROG)
 
-CFLAGS  = -I$(INCLUDE) -O3 -std=c99
+CFLAGS  = -I$(INCLUDE) -O3 -std=c++11
 LDFLAGS =
-LDLIBS  = -fopenmp -lm
+LDLIBS  = -lm
 
 
 # Phony targets
-.PHONY: build run rebuid clean tar
+.PHONY: build rebuid clean tar
 
 
 # Build target
 build: $(EXE)
 	$(info Building a program is complete. Executable file is located \
 		in "$(BIN)" directory.)
-
-# Run target
-run: $(EXE)
-	$(info Running a "$(PROG)" program...)
-	$<
 
 # Rebuild target
 rebuild: clean build
@@ -49,7 +43,7 @@ clean:
 # Create "tar" target
 tar:
 	$(info Archiving the project...)
-	$(TAR) $(PROG).tar $(EXAMP) $(INCLUDE) $(SRC) Makefile $(MAN)
+	$(TAR) $(PROG).tar $(INCLUDE) $(SRC) Makefile $(MAN)
 
 # Creating directories target
 $(BIN) $(OBJ):
@@ -57,7 +51,7 @@ $(BIN) $(OBJ):
 	$(MKDIR) $@
 
 # Compilation target
-$(OBJ)/%.o: $(SRC)/%.c | $(OBJ)
+$(OBJ)/%.o: $(SRC)/%.cpp | $(OBJ)
 	$(info Compiling a "$<" file...)
 	$(CC) $(CFLAGS) -c $< -o $@ $(LDLIBS)
 
