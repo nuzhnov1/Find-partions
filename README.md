@@ -1,7 +1,7 @@
 # Find all partions of number
 How to build this project on Linux:  
-1. cd `<dir with your project>`  
-2. make -s 
+1. $ cd `<dir with your project>`  
+2. $ make -s 
 
 You may also:  
 1. Rebuild this project, using command:  
